@@ -1,34 +1,33 @@
-<div>
-  <h2>Registration Form</h2>
-  <form (submit)="onSubmit($event)">
-    <div>
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required>
-    </div>
-    <div>
-      <label for="gender">Gender:</label>
-      <select id="gender" name="gender" required>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="other">Other</option>
-      </select>
-    </div>
-    <div>
-      <label for="phoneNumber">Phone Number:</label>
-      <input type="text" id="phoneNumber" name="phoneNumber" required>
-    </div>
-    <div>
-      <label for="age">Age:</label>
-      <input type="number" id="age" name="age" required>
-    </div>
-    <div>
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required>
-    </div>
-    <div>
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required>
-    </div>
-    <button type="submit">Register</button>
-  </form>
+<div class="registration-container">
+  <div class="registration-card">
+    <p class="title" >Registration Form</p>
+    <form (ngSubmit)="createuser()" [formGroup]="userForm">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required formControlName="name">
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required formControlName="gender">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required formControlName="age">
+      </div>
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required formControlName="username">
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required formControlName="password">
+      </div>
+      <button type="submit" [disabled]="!userForm.valid">Register</button>
+    </form>
+  </div>
 </div>

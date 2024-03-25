@@ -1,12 +1,15 @@
 <ul>
     <li><a href="#home">Home</a></li>
     <li><a href="#home">About</a></li>
-    <li style="float:right"><button type="button" (click)="loadSignInForm()">Login</button></li>
-    <li style="float:right"><button type="button" (click)="loadSignUpForm()">Register</button></li>
+    <li style="float:right"><button style="color: rgb(243, 241, 241); background-color: black;" type="button" (click)="loadSignInForm()">Login</button></li>
+    <li style="float:right"><button style="color: rgb(243, 241, 241); background-color: black;" type="button" (click)="loadSignUpForm()">Register</button></li>
+    <li style="float:right"><button style="color: rgb(243, 241, 241); background-color: black;" type="button" (click)="loadSignInForm()">Feedback </button></li>
   </ul>
   
+ 
   <app-login *ngIf="signInForm"></app-login>
   <app-registration *ngIf="signUpForm"></app-registration>
+  <app-reviewbyuser *ngIf="signInForm"></app-reviewbyuser> 
 
   
 

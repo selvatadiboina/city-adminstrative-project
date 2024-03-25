@@ -1,13 +1,13 @@
-export class User {
-    id:number
+export default class User {
+    
     name:string
     age:Number
     gender:string
     username:string
     password:String
 
-    constructor(id:number,name:string, age:Number, gender:string, username:string, password:String){
-        this.id=id
+    constructor(name:string, age:Number, gender:string, username:string, password:String){
+        
         this.name = name
         this.age= age
         this.gender=gender

@@ -2,21 +2,22 @@ import {inject, Injectable } from '@angular/core';
 
 import { addDoc, collection, collectionData, Firestore } from '@angular/fire/firestore';
 import { from, Observable } from 'rxjs';
-import User from '../model/user';
+
+import review from '../model/review';
 
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class UserService {
+export class ReviewService {
   
   fireStore = inject(Firestore)
-  userCollection = collection(this.fireStore, 'registration')
+  reviewCollection = collection(this.fireStore, 'feedback')
 
-  createUser(user: User): Observable<string> {
-    const userId = addDoc(this.userCollection, user)
+  userreview(review: review): Observable<string> {
+    const reviewId = addDoc(this.reviewCollection, review)
       .then(response => response.id)
-    return from(userId)
+    return from(reviewId)
   }
 }

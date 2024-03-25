@@ -1,0 +1,17 @@
+<div class="registration-container">
+    <div class="registration-card">
+      <p class="title" >Registration Form</p>
+      <form (ngSubmit)="userreview()" [formGroup]="reviewForm">
+
+
+        <div class="form-group">
+          <label for="feedback">Feedback:</label>
+          <input type="text" id="feedback" name="feedback" required formControlName="feedback">
+        </div>
+       
+    
+        <button type="submit" >Submit</button>
+      </form>
+    </div>
+  </div>
+  

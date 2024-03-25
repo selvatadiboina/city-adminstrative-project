@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "march21-database": {
+      "hosting": {
+        "city-adminstrative-project": [
+          "march21-database"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "march21-database"
+  }
+}

@@ -1,42 +1,46 @@
-import { Component } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { NgModel } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, NgModel, ReactiveFormsModule,Validators } from '@angular/forms';
+import User from '../../model/user';
 import { UserService } from '../../service/user.service';
-import { NgClass } from '@angular/common';
-import { Console } from 'console';
+
+
  
 @Component({
   selector: 'app-registration',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.css'
 })
+
 export class RegistrationComponent {
 
-  constructor(private userService: UserService) {
-    console.log(userService)
+  user: User = new User('',0,'','','')
+  userForm: FormGroup
+  userService = inject(UserService)
+
+  constructor(private fb: FormBuilder) {
+    // TODO Include form valdiation
+    this.userForm = fb.group({
+      // fullname: new FormControl(''),
+      // username: new FormControl(''),
+      // email: new FormControl(''),
+      name: ['', Validators.required],
+      age: ['', Validators.required],
+      gender: ['', Validators.required],
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+      // password: new FormControl('')
+    })
   }
 
-  onSubmit(event: Event) {
-    event.preventDefault(); // Prevent the default form submission behavior
-
-    const form = event.target as HTMLFormElement;
-    const user = {
-      name: form['name'].valueOf,
-      gender: form['gender'].value,
-      phoneNumber: form['phoneNumber'].value,
-      age: form['age'].value,
-      username: form['username'].value,
-      password: form['password'].value
-    };
-
-    this.userService.addUser(user)
-      .then(() => {
-        console.log('User added successfully');
-        form.reset(); // Optionally, reset the form after successful submission
-      })
-      .catch(error => console.error('Error adding user:', error));
+  createuser() {
+    // TODO The submit button must be disabled till the action is complete
+    // TODO Once the task is complete the user needs to be updated about that
+    this.user = this.userForm.value as User
+    console.log(this.user)
+    // TODO Hash the password so that the password is not stored as plain text
+    this.userService.createUser(this.user).subscribe(response => console.log(response))
   }
+  
 }
